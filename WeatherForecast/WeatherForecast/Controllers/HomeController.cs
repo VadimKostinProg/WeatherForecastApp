@@ -1,16 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WeatherForecast.Models;
+using WeatherForecast.ServiceContracts;
 
 namespace WeatherForecast.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IWeatherForecastService _weatherForecastService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IWeatherForecastService weatherForecastService)
         {
             _logger = logger;
+            _weatherForecastService = weatherForecastService;
         }
 
         public IActionResult Index()
@@ -18,15 +21,21 @@ namespace WeatherForecast.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpGet]
+        public async Task<IActionResult> Details([FromForm] string city)
         {
-            return View();
-        }
+            try
+            {
+                var forecast = await _weatherForecastService.GetWeatherForecastForCity(city);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                return View(forecast);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+
+                return View(null);
+            }
         }
     }
 }

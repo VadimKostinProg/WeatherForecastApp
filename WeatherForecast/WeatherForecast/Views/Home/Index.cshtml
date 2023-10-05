@@ -1,8 +1,21 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Weather forecast";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form asp-action="Details" method="get">
+    <div class="d-flex justify-content-center">
+        <div class="ng-container mt-5 w-50">
+            <div class="row text-center mb-3">
+                <h4>Choose city to check weather forecast.</h4>
+            </div>
+            <div class="row text-center">
+                <div class="col-9">
+                    <input type="text" name="city" class="form-control" />
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-primary w-100">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
