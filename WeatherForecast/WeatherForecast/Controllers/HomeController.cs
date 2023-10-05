@@ -22,7 +22,7 @@ namespace WeatherForecast.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details([FromForm] string city)
+        public async Task<IActionResult> Details(string city)
         {
             try
             {
