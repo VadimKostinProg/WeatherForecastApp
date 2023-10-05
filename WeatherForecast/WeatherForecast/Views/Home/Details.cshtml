@@ -7,82 +7,86 @@
     }
     else
     {
-        if (ViewBag.ToNotifyAboutRain)
-        {
-            <div class="container mb-3">
+        <div class="ng-container w-50">
+            @if (ViewBag.ToNotifyAboutRain)
+            {
+            <div class="row mb-3 w-100">
                 <div class="alert alert-danger" role="alert">
                     It is raining today. Be carefull!
                 </div>
             </div>
-        }
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title">@Model.City</h3>
+            }
+            <div class="row d-flex justify-content-center">
+                <div class="card w-50">
+                    <div class="card-body">
+                        <h3 class="card-title">@Model.City</h3>
 
-                <img src="@Model.IconUrl" class="card-img" />
+                        <img src="@Model.IconUrl" class="card-img" />
 
-                <h4 class="card-subtitle mb-2 text-body-secondary">@Model.Description</h4>
+                        <h4 class="card-subtitle mb-2 text-body-secondary">@Model.Description</h4>
 
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td class="card-text">
-                                Temperature:
-                            </td>
-                            <td class="card-text">
-                                @Model.Temperature &#8451
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="card-text">
-                                Min temperature:
-                            </td>
-                            <td class="card-text">
-                                @Model.MinTemperature &#8451
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="card-text">
-                                Max temperature:
-                            </td>
-                            <td class="card-text">
-                                @Model.MaxTemperature &#8451
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="card-text">
-                                Pressure:
-                            </td>
-                            <td class="card-text">
-                                @Model.Pressure hPa
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="card-text">
-                                Humidity:
-                            </td>
-                            <td class="card-text">
-                                @Model.Humidity %
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="card-text">
-                                Cloud:
-                            </td>
-                            <td class="card-text">
-                                @Model.Cloud %
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="card-text">
-                                Wind:
-                            </td>
-                            <td class="card-text">
-                                @Model.WindSpeed m/s
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="card-text">
+                                        Temperature:
+                                    </td>
+                                    <td class="card-text">
+                                        @Model.Temperature &#8451
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="card-text">
+                                        Min temperature:
+                                    </td>
+                                    <td class="card-text">
+                                        @Model.MinTemperature &#8451
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="card-text">
+                                        Max temperature:
+                                    </td>
+                                    <td class="card-text">
+                                        @Model.MaxTemperature &#8451
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="card-text">
+                                        Pressure:
+                                    </td>
+                                    <td class="card-text">
+                                        @Model.Pressure hPa
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="card-text">
+                                        Humidity:
+                                    </td>
+                                    <td class="card-text">
+                                        @Model.Humidity %
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="card-text">
+                                        Cloud:
+                                    </td>
+                                    <td class="card-text">
+                                        @Model.Cloud %
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="card-text">
+                                        Wind:
+                                    </td>
+                                    <td class="card-text">
+                                        @Model.WindSpeed m/s
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     }
