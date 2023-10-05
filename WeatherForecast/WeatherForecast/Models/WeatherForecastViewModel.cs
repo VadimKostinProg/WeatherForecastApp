@@ -3,6 +3,7 @@
     public class WeatherForecastViewModel
     {
         public int WeatherId { get; set; }
+        public string Main { get; set; }
         public string Description { get; set; }
         public string Icon { get; set; }
         public string IconUrl { get => @"http://openweathermap.org/img/w/" + Icon + ".png"; }

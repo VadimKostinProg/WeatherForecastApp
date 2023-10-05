@@ -18,6 +18,8 @@ namespace WeatherForecast.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.City = Request.Cookies["city"] ?? string.Empty;
+
             return View();
         }
 
@@ -26,7 +28,19 @@ namespace WeatherForecast.Controllers
         {
             try
             {
+                var cookieOptions = new CookieOptions();
+                cookieOptions.Expires = DateTime.Now.AddDays(2);
+
+                Response.Cookies.Append("city", city, cookieOptions);
+
                 var forecast = await _weatherForecastService.GetWeatherForecastForCity(city);
+
+                ViewBag.ToNotifyAboutRain = forecast.Main == "Rain" && !IsNotificationSent();
+
+                if (ViewBag.ToNotifyAboutRain)
+                {
+                    Response.Cookies.Append("lastNotificated", DateTime.Now.ToShortDateString(), cookieOptions);
+                }
 
                 return View(forecast);
             }
@@ -36,6 +50,13 @@ namespace WeatherForecast.Controllers
 
                 return View(null);
             }
+        }
+
+        private bool IsNotificationSent()
+        {
+            var lastNotificated = Request.Cookies["lastNotificated"];
+
+            return lastNotificated != null && Convert.ToDateTime(lastNotificated) == DateTime.Today;
         }
     }
 }

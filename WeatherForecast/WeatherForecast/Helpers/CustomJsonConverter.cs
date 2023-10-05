@@ -12,6 +12,7 @@ namespace WeatherForecast.Helpers
             var forecast = new WeatherForecastViewModel();
 
             forecast.WeatherId = jsonObject["weather"][0]["id"].Value<int>();
+            forecast.Main = jsonObject["weather"][0]["main"].Value<string>();
             forecast.Description = jsonObject["weather"][0]["description"].Value<string>();
             forecast.Icon = jsonObject["weather"][0]["icon"].Value<string>();
             forecast.Temperature = jsonObject["main"]["temp"].Value<double>();
